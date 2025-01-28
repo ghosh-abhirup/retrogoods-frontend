@@ -2,26 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.main_card {
+    @apply absolute left-[10vw] bg-white w-[25vw] h-[400px] p-8 rounded-lg overflow-hidden flex flex-col items-center justify-between
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.common-button {
+    @apply px-6 py-3 bg-black text-white font-medium cursor-pointer rounded-md hover:scale-[1.02] transition-all
 }

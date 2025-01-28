@@ -9,9 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        off_white: '#ffffe4'
       },
+
+      fontFamily: {
+        inter: ["var(--font-inter)", "sans-serif"],
+        kaoly: ["var(--font-kaoly)", "sans-serif"],
+      }
     },
   },
   plugins: [],
