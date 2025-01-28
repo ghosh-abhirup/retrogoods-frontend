@@ -4,6 +4,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 
 import Navbar from "@/components/common/Navbar";
+import Footer from "@/components/common/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -29,6 +30,7 @@ export default function RootLayout({
         <div className="w-full max-w-[1200px] mx-auto">
           <Navbar />
           {children}
+          <Footer />
         </div>
       </body>
     </html>

@@ -17,7 +17,6 @@ const Navbar = () => {
       <div className="w-full flex items-center justify-center gap-4 mt-6">
         <p>Home</p>
         <p>Shop</p>
-        <p>Profile</p>
         <p>Orders</p>
         <p>Support</p>
       </div>
