@@ -1,5 +1,4 @@
 import Button from "@/components/common/Button";
-import Image from "next/image";
 
 export default function Home() {
   return (
@@ -12,7 +11,7 @@ export default function Home() {
         <div className="main_card">
           <p className="text-xl font-bold w-3/4 mx-auto text-center">Design your home with passion</p>
           <p className="italic">Bring your dreams to life</p>
-          <Button>Shop now</Button>
+          {/* <Button>Shop now</Button> */}
         </div>
       </div>
     </div>

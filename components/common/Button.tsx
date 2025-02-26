@@ -3,12 +3,13 @@ import React, { ReactNode } from "react";
 
 interface props {
   children: ReactNode;
-  click: () => {};
+  type?: "button" | "submit" | "reset" | undefined;
+  click: Function;
 }
 
-const Button = ({ click, children }: props) => {
+const Button = ({ click, type = "button", children }: props) => {
   return (
-    <button onClick={click} className="common-button">
+    <button onClick={() => click()} type={type} className="common-button">
       {children}
     </button>
   );
