@@ -18,7 +18,7 @@ const UserLogProcess = () => {
 
   return (
     <div>
-      <LoginModal open={isLoginModalOpen} onOpenChange={setLoginModal} openRegisterModal={openRegisterModalFn} />
+      <LoginModal open={isLoginModalOpen} onOpenChange={setLoginModal} openRegisterModal={openRegisterModalFn} closeLoginModal={closeLoginModal} />
       <RegisterModal open={isRegisterModalOpen} onOpenChange={setRegisterModal} openSignInModal={openSignInModal} />
     </div>
   );

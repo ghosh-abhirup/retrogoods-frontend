@@ -5,11 +5,12 @@ interface props {
   children: ReactNode;
   type?: "button" | "submit" | "reset" | undefined;
   click: Function;
+  disabled?: boolean;
 }
 
-const Button = ({ click, type = "button", children }: props) => {
+const Button = ({ click, type = "button", children, disabled }: props) => {
   return (
-    <button onClick={() => click()} type={type} className="common-button">
+    <button onClick={() => click()} type={type} disabled={disabled} className="common-button">
       {children}
     </button>
   );

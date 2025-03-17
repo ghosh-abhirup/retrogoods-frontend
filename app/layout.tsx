@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
+import TanstackProvider from "@/components/TanstackProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,9 +29,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${kaoly.variable} font-inter antialiased bg-off_white`}>
         <div className="w-full max-w-[1200px] mx-auto">
-          <Navbar />
-          {children}
-          <Footer />
+          <TanstackProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </TanstackProvider>
         </div>
       </body>
     </html>

@@ -4,6 +4,10 @@ import FormikForm from "./Forms/FormikForm";
 import * as Yup from "yup";
 import FormInput from "./Forms/FormInput";
 import FormSubmit from "./Forms/FormSubmit";
+import { useMutation } from "@tanstack/react-query";
+import { registerUser } from "@/services/LoginProcessServices";
+import { ToastContainer, toast } from "react-toastify";
+import { ToastEffects } from "@/utility/utility";
 
 const initialValues = {
   firstname: "",
@@ -20,8 +24,20 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginModal = ({ open, onOpenChange, openSignInModal }: { open: boolean; onOpenChange: () => void; openSignInModal: Function }) => {
+  const registerUserMutation = useMutation({
+    mutationFn: (payload: Object) => registerUser(payload),
+    onSuccess: (data) => {
+      console.log("data = ", data);
+      // toast.success("Successfully registered");
+      openSignInModal();
+    },
+    onError(error) {
+      // toast.error(error?.message);
+    },
+  });
+
   const onSubmit = (values: Object) => {
-    console.log("values = ", values);
+    registerUserMutation.mutate(values);
   };
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -43,10 +59,11 @@ const LoginModal = ({ open, onOpenChange, openSignInModal }: { open: boolean; on
             <FormInput type="email" name="email" placeholder="Email" />
             <FormInput type="password" name="password" placeholder="Password" />
 
-            <FormSubmit>Sign in</FormSubmit>
+            <FormSubmit isLoading={registerUserMutation.isPending}>Sign in</FormSubmit>
           </div>
         </FormikForm>
       </DialogContent>
+      <ToastContainer />
     </Dialog>
   );
 };
