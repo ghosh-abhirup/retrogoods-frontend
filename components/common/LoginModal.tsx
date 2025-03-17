@@ -6,10 +6,10 @@ import FormInput from "./Forms/FormInput";
 import FormSubmit from "./Forms/FormSubmit";
 import { useMutation } from "@tanstack/react-query";
 import { loginUser } from "@/services/LoginProcessServices";
-import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { ToastEffects } from "@/utility/utility";
-import { AxiosError, AxiosInstance, AxiosResponse, AxiosResponseHeaders } from "axios";
+import toast from "react-hot-toast";
+import { AxiosResponseHeaders } from "axios";
+import useUserStore from "@/store/UserStore";
 
 const initialValues = {
   email: "",
@@ -24,22 +24,21 @@ const validationSchema = Yup.object().shape({
 const LoginModal = ({ open, onOpenChange, openRegisterModal, closeLoginModal }: { open: boolean; onOpenChange: () => void; openRegisterModal: Function; closeLoginModal: Function }) => {
   const router = useRouter();
 
+  const { setUser } = useUserStore();
+
   const loginUserMutation = useMutation({
     mutationFn: (payload: Object) => loginUser(payload),
 
-    onSuccess: () => {
-      toast.success("Successfully logged in", {
-        ...ToastEffects,
-      });
-
+    onSuccess: (response) => {
+      console.log(response);
+      setUser(response.data.data);
+      toast.success("Successfully logged in!", { duration: 2000 });
       closeLoginModal();
       router.push("/");
     },
+
     onError: (error: AxiosResponseHeaders) => {
-      console.log("Tanstack error = ", error);
-      toast.error(error?.response.data.message, {
-        ...ToastEffects,
-      });
+      toast.error(error.response.data.message, { duration: 2000 });
     },
   });
 
@@ -70,7 +69,6 @@ const LoginModal = ({ open, onOpenChange, openRegisterModal, closeLoginModal }: 
           </div>
         </FormikForm>
       </DialogContent>
-      <ToastContainer />
     </Dialog>
   );
 };

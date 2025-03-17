@@ -6,8 +6,6 @@ import FormInput from "./Forms/FormInput";
 import FormSubmit from "./Forms/FormSubmit";
 import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "@/services/LoginProcessServices";
-import { ToastContainer, toast } from "react-toastify";
-import { ToastEffects } from "@/utility/utility";
 
 const initialValues = {
   firstname: "",
@@ -28,11 +26,7 @@ const LoginModal = ({ open, onOpenChange, openSignInModal }: { open: boolean; on
     mutationFn: (payload: Object) => registerUser(payload),
     onSuccess: (data) => {
       console.log("data = ", data);
-      // toast.success("Successfully registered");
       openSignInModal();
-    },
-    onError(error) {
-      // toast.error(error?.message);
     },
   });
 
@@ -63,7 +57,6 @@ const LoginModal = ({ open, onOpenChange, openSignInModal }: { open: boolean; on
           </div>
         </FormikForm>
       </DialogContent>
-      <ToastContainer />
     </Dialog>
   );
 };

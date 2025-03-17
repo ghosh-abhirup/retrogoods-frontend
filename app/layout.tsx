@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
@@ -33,6 +34,7 @@ export default function RootLayout({
             <Navbar />
             {children}
             <Footer />
+            <Toaster />
           </TanstackProvider>
         </div>
       </body>
