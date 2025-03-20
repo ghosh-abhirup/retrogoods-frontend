@@ -1,5 +1,8 @@
 import axiosInstance from "@/axiosInstance";
-import { UUID } from "node:crypto";
+import { User } from "@/utility/types";
 
-export const getUser = (id: UUID) => axiosInstance.get(`users/${id}`);
+export const getUser = async (): Promise<User> => {
+    const res = await axiosInstance.get("/users/profile", { withCredentials: true });
+    return res.data.data;
+};
 export const logoutUser = () => axiosInstance.post(`users/logout`, {}, { withCredentials: true });

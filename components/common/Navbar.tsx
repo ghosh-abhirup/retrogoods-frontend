@@ -1,9 +1,32 @@
+"use client";
+
 import Link from "next/link";
 import { IoIosMenu, IoIosSearch } from "react-icons/io";
 import { IoBagOutline } from "react-icons/io5";
 import UserLogProcess from "./UserLogProcess";
+import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getUser } from "@/services/UserServices";
+import useUserStore from "@/store/UserStore";
+import { User } from "@/utility/types";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
+  const { user, setUser } = useUserStore();
+  const accessToken = Cookies.get("accessToken");
+
+  const { data, isPending } = useQuery<User>({
+    queryKey: ["profile"],
+    queryFn: getUser,
+    enabled: !!accessToken && !user,
+  });
+
+  useEffect(() => {
+    if (data) {
+      setUser(data);
+    }
+  }, [data]);
+
   return (
     <>
       <div className="w-full sticky z-50 bg-off_white top-0 left-0 py-4 px-3">

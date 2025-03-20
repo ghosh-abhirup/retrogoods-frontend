@@ -1,11 +1,6 @@
+import { User } from "@/utility/types";
 import { create } from "zustand";
 
-interface User {
-    id: string,
-    firstname: string,
-    lastname: string,
-    email: string,
-}
 
 interface UserStore {
     user: User | null,
